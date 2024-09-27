@@ -10,53 +10,53 @@ public class GameManager : MonoBehaviour
 
     //hp variable
 
-    private int playerHp;
+    private int playerHp = 30;
     public int PlayerHp
     {
         get { return playerHp; }
         set { PlayerHp = value; }
     }
 
-    private int boyHp;
+    private int boyHp = 5;
     public int BoyHp
     {
         get { return boyHp; }
         set { BoyHp = value; }
     }
 
-    private int enemyHp;
+    private int enemyHp = 10;
     public int EnemyHp
     {
-        get { return EnemyHp; }
+        get { return enemyHp; }
         set { EnemyHp = value; }
     }
 
 
     //attack variable
-    private int playerAttack;
+    private int playerAttack = 5;
     public int PlayerAttack
     {
         get { return playerAttack; }
         set { PlayerAttack = value; }
     }
 
-    private int boyAttack;
+    private int boyAttack = 1;
     public int BoyAttack
     {
         get { return boyAttack; }
         set { BoyAttack = value; }
     }
 
-    private int enemyAttack;
+    private int enemyAttack = 5;
     public int EnemyAttack
     {
-        get { return EnemyAttack; }
+        get { return enemyAttack; }
         set { EnemyAttack = value; }
     }
 
 
     //experince variable
-    private int boyBonusStat;
+    private int boyBonusStat = 0;
     public int BoyBonusStat
     {
         get { return boyBonusStat; }

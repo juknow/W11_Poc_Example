@@ -14,21 +14,21 @@ public class GameManager : MonoBehaviour
     public int PlayerHp
     {
         get { return playerHp; }
-        set { PlayerHp = value; }
+        set { playerHp = value; }
     }
 
     private int boyHp = 5;
     public int BoyHp
     {
         get { return boyHp; }
-        set { BoyHp = value; }
+        set { boyHp = value; }
     }
 
     private int enemyHp = 10;
     public int EnemyHp
     {
         get { return enemyHp; }
-        set { EnemyHp = value; }
+        set { enemyHp = value; }
     }
 
 
@@ -37,21 +37,21 @@ public class GameManager : MonoBehaviour
     public int PlayerAttack
     {
         get { return playerAttack; }
-        set { PlayerAttack = value; }
+        set { playerAttack = value; }
     }
 
     private int boyAttack = 1;
     public int BoyAttack
     {
         get { return boyAttack; }
-        set { BoyAttack = value; }
+        set { boyAttack = value; }
     }
 
     private int enemyAttack = 5;
     public int EnemyAttack
     {
         get { return enemyAttack; }
-        set { EnemyAttack = value; }
+        set { enemyAttack = value; }
     }
 
 
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     public int BoyBonusStat
     {
         get { return boyBonusStat; }
-        set { BoyBonusStat = value; }
+        set { boyBonusStat = value; }
     }
 
 

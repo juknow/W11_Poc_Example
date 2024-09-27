@@ -26,10 +26,10 @@ public class BattleUITextController : MonoBehaviour
     {
         playerHp.text = "My Hp : " + GameManager.Instance.PlayerHp;
         boyHp.text = "boy Hp : " + GameManager.Instance.BoyHp;
-        enemyHp.text = "boy Hp : " + GameManager.Instance.EnemyHp;
+        enemyHp.text = "Enemy Hp : " + GameManager.Instance.EnemyHp;
         playerAttack.text = "My Attack : " + GameManager.Instance.PlayerAttack;
         boyAttack.text = "boy Attack : " + GameManager.Instance.BoyAttack;
-        enemyAttack.text = "boy Hp : " + GameManager.Instance.EnemyAttack;
+        enemyAttack.text = "Enemy Attack : " + GameManager.Instance.EnemyAttack;
 
     }
 }

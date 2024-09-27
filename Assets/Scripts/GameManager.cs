@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     //private static GameManager _instance;
-    public static GameManager Instance {get; private set;}
+    public static GameManager Instance { get; private set; }
     // Start is called before the first frame update
 
     //hp variable
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-//attack variable
+    //attack variable
     private int playerAttack;
     public int PlayerAttack
     {
@@ -55,12 +55,18 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //attack variable
+    //experince variable
+    private int boyBonusStat;
+    public int BoyBonusStat
+    {
+        get { return boyBonusStat; }
+        set { BoyBonusStat = value; }
+    }
 
 
-    
-    
-    
+
+
+
     /*
     private void Awake() {
         if (_instance != null && _instance != this){

@@ -2085,7 +2085,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25874f1bec8af64428dd2cedd572fdf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpText: {fileID: 744484969}
+  playerHp: {fileID: 744484969}
+  boyHp: {fileID: 936665390}
+  playerAttack: {fileID: 870544409}
+  boyAttack: {fileID: 1698505209}
+  bonusStat: {fileID: 268091430}
 --- !u!4 &1694726395
 Transform:
   m_ObjectHideFlags: 0

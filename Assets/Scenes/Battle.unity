@@ -344,6 +344,50 @@ RectTransform:
   m_AnchoredPosition: {x: -682, y: 153.89}
   m_SizeDelta: {x: 307.77368, y: 307.7737}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &252629393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 252629395}
+  - component: {fileID: 252629394}
+  m_Layer: 0
+  m_Name: BattleController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &252629394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252629393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: badcc8a47e051594b8da99afe3ebb26a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &252629395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252629393}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 969.1211, y: 468.66736, z: -5.010411}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &269033362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,7 +1967,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2102844314}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 252629394}
+        m_TargetAssemblyTypeName: BattleController, Assembly-CSharp
+        m_MethodName: AttackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2102844314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1971,3 +2027,4 @@ SceneRoots:
   - {fileID: 1903198530}
   - {fileID: 1436908075}
   - {fileID: 188997577}
+  - {fileID: 252629395}

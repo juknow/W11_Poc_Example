@@ -20,14 +20,14 @@ public class HomeButtonController : MonoBehaviour
     public void EasyBattleButton()
     {
         SceneManager.LoadScene("Battle");
-        GameManager.Instance.EnemyHp = 20;
+        GameManager.Instance.EnemyHp = 30;
         GameManager.Instance.EnemyAttack = 5;
     }
 
     public void MediumBattleButton()
     {
         SceneManager.LoadScene("Battle");
-        GameManager.Instance.EnemyHp = 40;
+        GameManager.Instance.EnemyHp = 60;
         GameManager.Instance.EnemyAttack = 10;
 
     }
@@ -35,7 +35,7 @@ public class HomeButtonController : MonoBehaviour
     public void HardBattleButton()
     {
         SceneManager.LoadScene("Battle");
-        GameManager.Instance.EnemyHp = 60;
+        GameManager.Instance.EnemyHp = 90;
         GameManager.Instance.EnemyAttack = 20;
 
     }

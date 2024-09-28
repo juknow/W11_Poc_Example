@@ -15,6 +15,10 @@ public class BattleUITextController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI boyAttack;
     [SerializeField] private TextMeshProUGUI enemyAttack;
 
+
+    [Header("Scripts필드")]
+    [SerializeField] private BattleController battleController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +28,12 @@ public class BattleUITextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerHp.text = "My Hp : " + GameManager.Instance.PlayerHp;
-        boyHp.text = "boy Hp : " + GameManager.Instance.BoyHp;
-        enemyHp.text = "Enemy Hp : " + GameManager.Instance.EnemyHp;
-        playerAttack.text = "My Attack : " + GameManager.Instance.PlayerAttack;
-        boyAttack.text = "boy Attack : " + GameManager.Instance.BoyAttack;
-        enemyAttack.text = "Enemy Attack : " + GameManager.Instance.EnemyAttack;
+        playerHp.text = "My Hp : " + battleController.playerHp;
+        boyHp.text = "boy Hp : " + battleController.boyHp;
+        enemyHp.text = "Enemy Hp : " + battleController.enemyHp;
+        playerAttack.text = "My Attack : " + battleController.playerAttack;
+        boyAttack.text = "boy Attack : " + battleController.boyAttack;
+        enemyAttack.text = "Enemy Attack : " + battleController.enemyAttack;
 
     }
 }

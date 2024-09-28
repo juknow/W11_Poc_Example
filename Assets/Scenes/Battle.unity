@@ -291,6 +291,7 @@ MonoBehaviour:
   playerAttack: {fileID: 1883678666}
   boyAttack: {fileID: 113685255}
   enemyAttack: {fileID: 343529927}
+  battleController: {fileID: 252629394}
 --- !u!4 &188997577
 Transform:
   m_ObjectHideFlags: 0

@@ -34,6 +34,8 @@ public class BattleController : MonoBehaviour
 
     private PlayerState playerState;
 
+    private bool isAttacking = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +67,8 @@ public class BattleController : MonoBehaviour
             GameManager.Instance.BoyBonusStat += 5;
             GameManager.Instance.PlayerHp -= 5;
             GameManager.Instance.PlayerAttack -= 1;
+
+            isAttacking = false;
             SceneManager.LoadScene("Home");
         }
     }
@@ -96,20 +100,26 @@ public class BattleController : MonoBehaviour
 
     public void AttackButton()
     {
+        if (isAttacking)
+        {
+            attackButton.interactable = false;
+            return;
+        }
+
+        isAttacking = true;
+        attackButton.interactable = false;
+
         switch (playerState)
         {
             case PlayerState.Young:
-                attackButton.interactable = false;
                 StartCoroutine(YoungAttackSequence());
                 break;
 
             case PlayerState.Middle:
-                attackButton.interactable = false;
                 StartCoroutine(MiddleAttackSequence());
                 break;
 
             case PlayerState.Old:
-                attackButton.interactable = false;
                 StartCoroutine(OldAttackSequence());
                 break;
 
@@ -155,6 +165,7 @@ public class BattleController : MonoBehaviour
             EnemyAttack();
         }
         attackButton.interactable = true;
+        isAttacking = false;
     }
     private IEnumerator MiddleAttackSequence()
     {
@@ -168,7 +179,10 @@ public class BattleController : MonoBehaviour
         {
             EnemyAttack();
         }
+
+
         attackButton.interactable = true;
+        isAttacking = false;
     }
 
     private IEnumerator OldAttackSequence()
@@ -183,5 +197,6 @@ public class BattleController : MonoBehaviour
         PlayerAttack();
         yield return new WaitForSeconds(0.5f);
         attackButton.interactable = true;
+        isAttacking = false;
     }
 }

@@ -48,6 +48,13 @@ public class BattleController : MonoBehaviour
         logText.text = "";
 
         UpdateStatus();
+
+        switch (playerState)
+        {
+            case PlayerState.Old:
+                PlayerAttack();
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -89,9 +96,24 @@ public class BattleController : MonoBehaviour
 
     public void AttackButton()
     {
-        // disable button
-        attackButton.interactable = false;
-        StartCoroutine(AttackSequence());
+        switch (playerState)
+        {
+            case PlayerState.Young:
+                attackButton.interactable = false;
+                StartCoroutine(YoungAttackSequence());
+                break;
+
+            case PlayerState.Middle:
+                attackButton.interactable = false;
+                StartCoroutine(MiddleAttackSequence());
+                break;
+
+            case PlayerState.Old:
+                attackButton.interactable = false;
+                StartCoroutine(OldAttackSequence());
+                break;
+
+        }
     }
 
     public void PlayerAttack()
@@ -122,7 +144,7 @@ public class BattleController : MonoBehaviour
 
     }
 
-    private IEnumerator AttackSequence()
+    private IEnumerator YoungAttackSequence()
     {
         PlayerAttack();
         yield return new WaitForSeconds(0.5f);
@@ -132,6 +154,34 @@ public class BattleController : MonoBehaviour
         {
             EnemyAttack();
         }
+        attackButton.interactable = true;
+    }
+    private IEnumerator MiddleAttackSequence()
+    {
+        PlayerAttack();
+        yield return new WaitForSeconds(0.5f);
+        attackButton.interactable = true;
+        yield return new WaitUntil(() => attackButton.interactable == false);
+        BoyAttack();
+        yield return new WaitForSeconds(0.5f);
+        if (enemyHp > 0)
+        {
+            EnemyAttack();
+        }
+        attackButton.interactable = true;
+    }
+
+    private IEnumerator OldAttackSequence()
+    {
+        BoyAttack();
+        yield return new WaitForSeconds(0.5f);
+        if (enemyHp > 0)
+        {
+            EnemyAttack();
+        }
+        yield return new WaitForSeconds(0.5f);
+        PlayerAttack();
+        yield return new WaitForSeconds(0.5f);
         attackButton.interactable = true;
     }
 }

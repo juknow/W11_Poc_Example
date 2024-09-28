@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BattleController : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class BattleController : MonoBehaviour
 
     [Header("log필드")]
     [SerializeField] private TextMeshProUGUI logText;
+
+    [Header("Button필드")]
+    [SerializeField] private Button attackButton;
 
 
     // Start is called before the first frame update
@@ -53,6 +57,8 @@ public class BattleController : MonoBehaviour
 
     public void AttackButton()
     {
+        // disable button
+        attackButton.interactable = false;
         PlayerAttack();
         BoyAttack();
 

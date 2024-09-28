@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
 
     //experince variable
-    private int boyBonusStat = 0;
+    private int boyBonusStat = 3;
     public int BoyBonusStat
     {
         get { return boyBonusStat; }

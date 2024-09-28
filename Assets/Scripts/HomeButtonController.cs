@@ -39,4 +39,24 @@ public class HomeButtonController : MonoBehaviour
         GameManager.Instance.EnemyAttack = 20;
 
     }
+
+    public void BoyHpPlusButton()
+    {
+        if (GameManager.Instance.BoyBonusStat > 0)
+        {
+            GameManager.Instance.BoyHp++;
+            GameManager.Instance.BoyBonusStat--;
+        }
+
+    }
+
+    public void BoyAttackPlusButton()
+    {
+        if (GameManager.Instance.BoyBonusStat > 0)
+        {
+            GameManager.Instance.BoyAttack++;
+            GameManager.Instance.BoyBonusStat--;
+        }
+
+    }
 }

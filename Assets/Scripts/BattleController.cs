@@ -23,6 +23,17 @@ public class BattleController : MonoBehaviour
     [Header("Button필드")]
     [SerializeField] private Button attackButton;
 
+    // field end
+
+    public enum PlayerState
+    {
+        Young,
+        Middle,
+        Old
+    }
+
+    private PlayerState playerState;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +46,8 @@ public class BattleController : MonoBehaviour
         boyAttack = GameManager.Instance.BoyAttack;
         enemyAttack = GameManager.Instance.EnemyAttack;
         logText.text = "";
+
+        UpdateStatus();
     }
 
     // Update is called once per frame
@@ -42,12 +55,31 @@ public class BattleController : MonoBehaviour
     {
         if (enemyHp <= 0)
         {
-            GameManager.Instance.BoyBonusStat += 3;
-            GameManager.Instance.PlayerHp -= 1;
+            GameManager.Instance.BoyBonusStat += 5;
+            GameManager.Instance.PlayerHp -= 5;
             GameManager.Instance.PlayerAttack -= 1;
             SceneManager.LoadScene("Home");
         }
+    }
 
+    public void UpdateStatus()
+    {
+        int playerTotal = GameManager.Instance.PlayerHp + GameManager.Instance.PlayerAttack;
+        int boyTotal = GameManager.Instance.BoyHp + GameManager.Instance.BoyAttack;
+
+        // state determination
+        if (playerTotal > boyTotal * 1.3f)
+        {
+            playerState = PlayerState.Young;
+        }
+        else if (playerTotal < boyTotal * 0.7f)
+        {
+            playerState = PlayerState.Old;
+        }
+        else
+        {
+            playerState = PlayerState.Middle;
+        }
     }
 
     public void UpdateBattleLog(string message)

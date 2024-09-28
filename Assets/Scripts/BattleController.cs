@@ -27,6 +27,13 @@ public class BattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemyHp <= 0)
+        {
+            GameManager.Instance.BoyBonusStat += 3;
+            GameManager.Instance.PlayerHp -= 1;
+            GameManager.Instance.PlayerAttack -= 1;
+            SceneManager.LoadScene("Home");
+        }
 
     }
 

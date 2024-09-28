@@ -15,9 +15,6 @@ public class BattleUITextController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI boyAttack;
     [SerializeField] private TextMeshProUGUI enemyAttack;
 
-    [Header("log필드")]
-    [SerializeField] private TextMeshProUGUI logText;
-
 
     [Header("Scripts필드")]
     [SerializeField] private BattleController battleController;

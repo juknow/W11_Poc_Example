@@ -53,6 +53,17 @@ public class BattleController : MonoBehaviour
 
     public void AttackButton()
     {
+        PlayerAttack();
+        BoyAttack();
+
+        if (enemyHp > 0)
+        {
+            EnemyAttack();
+        }
+    }
+
+    public void PlayerAttack()
+    {
         enemyHp -= playerAttack;
         UpdateBattleLog($"Player Attack! : {playerAttack} damage");
 

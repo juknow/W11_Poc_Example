@@ -59,13 +59,7 @@ public class BattleController : MonoBehaviour
     {
         // disable button
         attackButton.interactable = false;
-        PlayerAttack();
-        BoyAttack();
-
-        if (enemyHp > 0)
-        {
-            EnemyAttack();
-        }
+        StartCoroutine(AttackSequence());
     }
 
     public void PlayerAttack()
@@ -94,5 +88,18 @@ public class BattleController : MonoBehaviour
             UpdateBattleLog($"Enemyy Attacked Boy! : {enemyAttack} damage");
         }
 
+    }
+
+    private IEnumerator AttackSequence()
+    {
+        PlayerAttack();
+        yield return new WaitForSeconds(0.5f);
+        BoyAttack();
+        yield return new WaitForSeconds(0.5f);
+        if (enemyHp > 0)
+        {
+            EnemyAttack();
+        }
+        attackButton.interactable = true;
     }
 }

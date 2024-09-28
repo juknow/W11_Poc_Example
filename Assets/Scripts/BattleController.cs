@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BattleController : MonoBehaviour
 {
@@ -19,6 +20,22 @@ public class BattleController : MonoBehaviour
     [Header("log필드")]
     [SerializeField] private TextMeshProUGUI logText;
 
+    [Header("Button필드")]
+    [SerializeField] private Button attackButton;
+
+    // field end
+
+    public enum PlayerState
+    {
+        Young,
+        Middle,
+        Old
+    }
+
+    private PlayerState playerState;
+
+    private bool isAttacking = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +48,15 @@ public class BattleController : MonoBehaviour
         boyAttack = GameManager.Instance.BoyAttack;
         enemyAttack = GameManager.Instance.EnemyAttack;
         logText.text = "";
+
+        UpdateStatus();
+
+        switch (playerState)
+        {
+            case PlayerState.Old:
+                PlayerAttack();
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -38,12 +64,33 @@ public class BattleController : MonoBehaviour
     {
         if (enemyHp <= 0)
         {
-            GameManager.Instance.BoyBonusStat += 3;
-            GameManager.Instance.PlayerHp -= 1;
+            GameManager.Instance.BoyBonusStat += 5;
+            GameManager.Instance.PlayerHp -= 5;
             GameManager.Instance.PlayerAttack -= 1;
+
+            isAttacking = false;
             SceneManager.LoadScene("Home");
         }
+    }
 
+    public void UpdateStatus()
+    {
+        int playerTotal = GameManager.Instance.PlayerHp + GameManager.Instance.PlayerAttack;
+        int boyTotal = GameManager.Instance.BoyHp + GameManager.Instance.BoyAttack;
+
+        // state determination
+        if (playerTotal > boyTotal * 1.3f)
+        {
+            playerState = PlayerState.Young;
+        }
+        else if (playerTotal < boyTotal * 0.7f)
+        {
+            playerState = PlayerState.Old;
+        }
+        else
+        {
+            playerState = PlayerState.Middle;
+        }
     }
 
     public void UpdateBattleLog(string message)
@@ -53,12 +100,29 @@ public class BattleController : MonoBehaviour
 
     public void AttackButton()
     {
-        PlayerAttack();
-        BoyAttack();
-
-        if (enemyHp > 0)
+        if (isAttacking)
         {
-            EnemyAttack();
+            attackButton.interactable = false;
+            return;
+        }
+
+        isAttacking = true;
+        attackButton.interactable = false;
+
+        switch (playerState)
+        {
+            case PlayerState.Young:
+                StartCoroutine(YoungAttackSequence());
+                break;
+
+            case PlayerState.Middle:
+                StartCoroutine(MiddleAttackSequence());
+                break;
+
+            case PlayerState.Old:
+                StartCoroutine(OldAttackSequence());
+                break;
+
         }
     }
 
@@ -88,5 +152,51 @@ public class BattleController : MonoBehaviour
             UpdateBattleLog($"Enemyy Attacked Boy! : {enemyAttack} damage");
         }
 
+    }
+
+    private IEnumerator YoungAttackSequence()
+    {
+        PlayerAttack();
+        yield return new WaitForSeconds(0.5f);
+        BoyAttack();
+        yield return new WaitForSeconds(0.5f);
+        if (enemyHp > 0)
+        {
+            EnemyAttack();
+        }
+        attackButton.interactable = true;
+        isAttacking = false;
+    }
+    private IEnumerator MiddleAttackSequence()
+    {
+        PlayerAttack();
+        yield return new WaitForSeconds(0.5f);
+        attackButton.interactable = true;
+        yield return new WaitUntil(() => attackButton.interactable == false);
+        BoyAttack();
+        yield return new WaitForSeconds(0.5f);
+        if (enemyHp > 0)
+        {
+            EnemyAttack();
+        }
+
+
+        attackButton.interactable = true;
+        isAttacking = false;
+    }
+
+    private IEnumerator OldAttackSequence()
+    {
+        BoyAttack();
+        yield return new WaitForSeconds(0.5f);
+        if (enemyHp > 0)
+        {
+            EnemyAttack();
+        }
+        yield return new WaitForSeconds(0.5f);
+        PlayerAttack();
+        yield return new WaitForSeconds(0.5f);
+        attackButton.interactable = true;
+        isAttacking = false;
     }
 }

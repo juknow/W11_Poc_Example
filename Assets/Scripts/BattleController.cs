@@ -48,8 +48,6 @@ public class BattleController : MonoBehaviour
 
     private TeacherState teacherState;
     private BoyState boyState;
-
-    private int turn = 0;
     void Start()
     {
         playerHp = GameManager.Instance.PlayerHp;
@@ -323,20 +321,20 @@ public class BattleController : MonoBehaviour
 
     private IEnumerator TurnEndSequence()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         turnText.text = "제자 턴";
         UpdateBattleLog($"제자 생각 중... ");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         BoyAttack();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         if (enemyHp > 0)
         {
             turnText.text = "적의 턴";
             UpdateBattleLog($"적 생각 중... ");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             EnemyAttack(); // 적이 공격
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         turnText.text = "나의 턴";
         UpdateBattleLog($"나 생각 중... ");
         firstButton.interactable = true;

@@ -8,6 +8,36 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     // Start is called before the first frame update
 
+
+    //name variable
+    private string teacherName = "문준호";
+    public string TeacherName
+    {
+        get { return teacherName; }
+        set { teacherName = value; }
+    }
+    private string boyName = "유영승";
+    public string BoyName
+    {
+        get { return boyName; }
+        set { boyName = value; }
+    }
+
+    //color variable
+    private Color teacherColor;
+    public Color TeacherColor
+    {
+        get { return teacherColor; }
+        set { teacherColor = value; }
+    }
+
+    private Color boyColor;
+    public Color BoyColor
+    {
+        get { return boyColor; }
+        set { boyColor = value; }
+    }
+
     //game start variable
     private bool gameSet = false;
     public bool GameSet

@@ -64,6 +64,8 @@ public class UITextController : MonoBehaviour
     {
         GameManager.Instance.TeacherJob = firstTeacherJobDropDown.value;
         GameManager.Instance.BoyJob = firstBoyJobDropDown.value;
+        GameManager.Instance.TeacherColor = Color.red;
+        GameManager.Instance.BoyColor = Color.blue;
         GameManager.Instance.GameSet = true;
         firstTeacherJobCanvas.gameObject.SetActive(false);
     }
@@ -87,6 +89,8 @@ public class UITextController : MonoBehaviour
     {
         GameManager.Instance.TeacherJob = GameManager.Instance.BoyJob;
         GameManager.Instance.BoyJob = boyJobDropDown.value;
+        GameManager.Instance.TeacherColor = GameManager.Instance.BoyColor;
+        GameManager.Instance.BoyColor = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.5f, 1f);
         GameManager.Instance.BattleFinish = false;
         boyJobCanvas.gameObject.SetActive(false);
     }

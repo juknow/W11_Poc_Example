@@ -386,6 +386,8 @@ MonoBehaviour:
   turnText: {fileID: 1462757402}
   firstButton: {fileID: 2102844313}
   secondButton: {fileID: 1360701917}
+  teacherImage: {fileID: 282819615}
+  boyImage: {fileID: 1531510033}
 --- !u!4 &252629395
 Transform:
   m_ObjectHideFlags: 0

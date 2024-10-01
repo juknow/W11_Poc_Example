@@ -30,6 +30,11 @@ public class BattleController : MonoBehaviour
     [SerializeField] private Button secondButton;
 
 
+    [Header("Imange필드")]
+    [SerializeField] private Image teacherImage;
+    [SerializeField] private Image boyImage;
+
+
     // field end
 
     public enum TeacherState
@@ -60,6 +65,9 @@ public class BattleController : MonoBehaviour
 
         teacherJob = GameManager.Instance.TeacherJob;
         boyJob = GameManager.Instance.BoyJob;
+
+        teacherImage.color = GameManager.Instance.TeacherColor;
+        boyImage.color = GameManager.Instance.BoyColor;
 
         UpdateStatus();
         UpdateButton();

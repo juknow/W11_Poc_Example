@@ -270,15 +270,14 @@ public class BattleController : MonoBehaviour
                     }
                     else if (target == 1)
                     {
-                        enemyHp -= boyAttack / 2;
-                        UpdateBattleLog($"제자는 약한 공격을 선택했다! : {boyAttack / 2} 데미지 !");
+                        playerHp += boyAttack;
+                        UpdateBattleLog($"제자는 나의 힐을 선택했다! : {boyAttack} 회복 !");
                     }
                 }
                 else if (target2 == 1)
                 {
-                    boyHp += boyAttack / 2;
-                    playerHp += boyAttack / 2;
-                    UpdateBattleLog($"제자는 전체 힐을 선택했다! : {boyAttack / 2} 회복 !");
+                    enemyHp -= boyAttack / 2;
+                    UpdateBattleLog($"제자는 약한 공격을 선택했다! : {boyAttack / 2} 데미지 !");
                 }
                 break;
 

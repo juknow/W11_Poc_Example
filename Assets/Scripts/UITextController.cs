@@ -52,16 +52,12 @@ public class UITextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerHp.text = "My Hp : " + GameManager.Instance.PlayerHp;
-        boyHp.text = "boy Hp : " + GameManager.Instance.BoyHp;
-        playerAttack.text = "My Attack : " + GameManager.Instance.PlayerAttack;
-        boyAttack.text = "boy Attack : " + GameManager.Instance.BoyAttack;
+        playerHp.text = "내 체력 : " + GameManager.Instance.PlayerHp;
+        boyHp.text = "제자 체력 : " + GameManager.Instance.BoyHp;
+        playerAttack.text = "내 공격력 : " + GameManager.Instance.PlayerAttack;
+        boyAttack.text = "제자 공격력 : " + GameManager.Instance.BoyAttack;
         playerJob.text = "스승 직업 : " + GetJobName(GameManager.Instance.TeacherJob);
         boyJob.text = "제자 직업 : " + GetJobName(GameManager.Instance.BoyJob);
-        bonusStat.text = "bonus Stats : " + GameManager.Instance.BoyBonusStat;
-
-
-
     }
 
     public void FirstSetJob()

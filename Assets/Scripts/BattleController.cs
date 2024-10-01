@@ -138,14 +138,16 @@ public class BattleController : MonoBehaviour
 
     public void UpdateBattleLog(string message)
     {
+        // 새로운 메시지를 추가
         logText.text += message + "\n";
 
-        // logText의 줄 수가 8줄을 넘는지 확인하고 초과된 줄을 삭제
-        string[] lines = logText.text.Split(new[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
-        if (lines.Length > 8)
+        // 줄바꿈을 기준으로 현재 로그의 줄들을 배열로 나눕니다.
+        string[] lines = logText.text.Split(new[] { '\n' }, System.StringSplitOptions.None);
+
+        // 줄 수가 9줄 이상일 경우, 가장 오래된 줄을 삭제하고 다시 문자열로 합칩니다.
+        if (lines.Length > 9) // 9를 사용하는 이유: 마지막 줄바꿈을 포함하여 계산
         {
-            // 가장 오래된 줄을 삭제
-            logText.text = string.Join("\n", lines, lines.Length - 8, 8);
+            logText.text = string.Join("\n", lines, lines.Length - 9, 9);
         }
     }
 

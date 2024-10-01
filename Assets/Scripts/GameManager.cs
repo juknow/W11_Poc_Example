@@ -8,6 +8,67 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     // Start is called before the first frame update
 
+
+    //name variable
+    private string teacherName = "문준호";
+    public string TeacherName
+    {
+        get { return teacherName; }
+        set { teacherName = value; }
+    }
+    private string boyName = "유영승";
+    public string BoyName
+    {
+        get { return boyName; }
+        set { boyName = value; }
+    }
+
+    //color variable
+    private Color teacherColor;
+    public Color TeacherColor
+    {
+        get { return teacherColor; }
+        set { teacherColor = value; }
+    }
+
+    private Color boyColor;
+    public Color BoyColor
+    {
+        get { return boyColor; }
+        set { boyColor = value; }
+    }
+
+    //game start variable
+    private bool gameSet = false;
+    public bool GameSet
+    {
+        get { return gameSet; }
+        set { gameSet = value; }
+    }
+
+    //battle variable
+    private bool battleFinish = false;
+    public bool BattleFinish
+    {
+        get { return battleFinish; }
+        set { battleFinish = value; }
+    }
+
+    // job variable
+    private int teacherJob = 0;
+    public int TeacherJob
+    {
+        get { return teacherJob; }
+        set { teacherJob = value; }
+    }
+    private int boyJob = 0;
+    public int BoyJob
+    {
+        get { return boyJob; }
+        set { boyJob = value; }
+    }
+
+
     //hp variable
 
     private int playerHp = 50;
@@ -17,14 +78,14 @@ public class GameManager : MonoBehaviour
         set { playerHp = value; }
     }
 
-    private int boyHp = 10;
+    private int boyHp = 30;
     public int BoyHp
     {
         get { return boyHp; }
         set { boyHp = value; }
     }
 
-    private int enemyHp = 10;
+    private int enemyHp = 50;
     public int EnemyHp
     {
         get { return enemyHp; }
@@ -40,7 +101,7 @@ public class GameManager : MonoBehaviour
         set { playerAttack = value; }
     }
 
-    private int boyAttack = 1;
+    private int boyAttack = 5;
     public int BoyAttack
     {
         get { return boyAttack; }

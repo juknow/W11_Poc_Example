@@ -220,7 +220,7 @@ public class BattleController : MonoBehaviour
     }
     public void FighterSecondAction()
     {
-        UpdateBattleLog($"나는 엄호를 선택했다! : 제자의 피해를 대신 받는다!");
+        UpdateBattleLog($"나는 엄호를 선택했다! : {GameManager.Instance.BoyName}의 피해를 대신 받는다!");
 
     }
     public void HealerFirstAction()
@@ -230,7 +230,7 @@ public class BattleController : MonoBehaviour
         if (target == 0)
         {
             boyHp += playerAttack;
-            UpdateBattleLog($"나는 제자 힐을 선택했다! : {playerAttack} 회복 !");
+            UpdateBattleLog($"나는 {GameManager.Instance.BoyName} 힐을 선택했다! : {playerAttack} 회복 !");
         }
         else if (target == 1)
         {
@@ -267,11 +267,11 @@ public class BattleController : MonoBehaviour
                 if (target1 == 0)
                 {
                     enemyHp -= boyAttack;
-                    UpdateBattleLog($"제자는 검 공격을 선택했다! : {boyAttack} 데미지 !");
+                    UpdateBattleLog($"{GameManager.Instance.BoyName}는 검 공격을 선택했다! : {boyAttack} 데미지 !");
                 }
                 else if (target1 == 1)
                 {
-                    UpdateBattleLog($"제자는 엄호를 선택했다! : 나의 피해를 대신 받는다!");
+                    UpdateBattleLog($"{GameManager.Instance.BoyName}는 엄호를 선택했다! : 나의 피해를 대신 받는다!");
                 }
                 break;
 
@@ -284,18 +284,18 @@ public class BattleController : MonoBehaviour
                     if (target == 0)
                     {
                         boyHp += boyAttack;
-                        UpdateBattleLog($"제자는 제자 힐을 선택했다! : {boyAttack} 회복 !");
+                        UpdateBattleLog($"{GameManager.Instance.BoyName}는 {GameManager.Instance.BoyName} 힐을 선택했다! : {boyAttack} 회복 !");
                     }
                     else if (target == 1)
                     {
                         playerHp += boyAttack;
-                        UpdateBattleLog($"제자는 나의 힐을 선택했다! : {boyAttack} 회복 !");
+                        UpdateBattleLog($"{GameManager.Instance.BoyName}는 나의 힐을 선택했다! : {boyAttack} 회복 !");
                     }
                 }
                 else if (target2 == 1)
                 {
                     enemyHp -= boyAttack / 2;
-                    UpdateBattleLog($"제자는 약한 공격을 선택했다! : {boyAttack / 2} 데미지 !");
+                    UpdateBattleLog($"{GameManager.Instance.BoyName}는 약한 공격을 선택했다! : {boyAttack / 2} 데미지 !");
                 }
                 break;
 
@@ -305,12 +305,12 @@ public class BattleController : MonoBehaviour
                 if (target3 == 0)
                 {
                     enemyHp -= 2 * boyAttack;
-                    UpdateBattleLog($"제자는 마력 발사를 선택했다! : {2 * boyAttack} 데미지 !");
+                    UpdateBattleLog($"{GameManager.Instance.BoyName}는 마력 발사를 선택했다! : {2 * boyAttack} 데미지 !");
                 }
                 else if (target3 == 1)
                 {
                     enemyHp -= boyAttack;
-                    UpdateBattleLog($"제자는 전역 마력 공격을 선택했다! :{boyAttack} 데미지 !");
+                    UpdateBattleLog($"{GameManager.Instance.BoyName}는 전역 마력 공격을 선택했다! :{boyAttack} 데미지 !");
                 }
                 break;
 
@@ -328,7 +328,7 @@ public class BattleController : MonoBehaviour
         else if (target == 1)
         {
             boyHp -= enemyAttack;
-            UpdateBattleLog($"적은 제자를 공격했다! : {enemyAttack} 데미지 !");
+            UpdateBattleLog($"적은 {GameManager.Instance.BoyName}를 공격했다! : {enemyAttack} 데미지 !");
         }
 
     }

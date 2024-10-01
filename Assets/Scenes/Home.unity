@@ -7107,9 +7107,13 @@ MonoBehaviour:
   firstTeacherJobDropDown: {fileID: 771456572}
   firstBoyJobDropDown: {fileID: 1201169777}
   firstJobButton: {fileID: 353890898}
+  firstTeacherNameInputField: {fileID: 1657088851}
+  firstBoyNameInputField: {fileID: 405010954}
   boyJobCanvas: {fileID: 1280426499}
   boyJobDropDown: {fileID: 2086138536}
   boyJobButton: {fileID: 488485964}
+  boyNameInputField: {fileID: 1401531620}
+  explainText: {fileID: 1426764717}
 --- !u!4 &1694726395
 Transform:
   m_ObjectHideFlags: 0

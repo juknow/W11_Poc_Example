@@ -19,6 +19,7 @@ public class BattleController : MonoBehaviour
 
     [Header("log필드")]
     [SerializeField] private TextMeshProUGUI logText;
+    [SerializeField] private TextMeshProUGUI turnText;
 
     [Header("Button필드")]
     [SerializeField] private Button attackButton;
@@ -128,17 +129,20 @@ public class BattleController : MonoBehaviour
 
     public void PlayerAttack()
     {
+        turnText.text = "스승 턴";
         enemyHp -= playerAttack;
         UpdateBattleLog($"Player Attack! : {playerAttack} damage");
 
     }
     public void BoyAttack()
     {
+        turnText.text = "제자 턴";
         enemyHp -= boyAttack;
         UpdateBattleLog($"Boy Attack! : {boyAttack} damage");
     }
     public void EnemyAttack()
     {
+        turnText.text = "적 턴";
         int target = Random.Range(0, 2);
 
         if (target == 0)
@@ -157,9 +161,9 @@ public class BattleController : MonoBehaviour
     private IEnumerator YoungAttackSequence()
     {
         PlayerAttack();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         BoyAttack();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         if (enemyHp > 0)
         {
             EnemyAttack();
@@ -170,11 +174,11 @@ public class BattleController : MonoBehaviour
     private IEnumerator MiddleAttackSequence()
     {
         PlayerAttack();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         attackButton.interactable = true;
         yield return new WaitUntil(() => attackButton.interactable == false);
         BoyAttack();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         if (enemyHp > 0)
         {
             EnemyAttack();
@@ -188,14 +192,14 @@ public class BattleController : MonoBehaviour
     private IEnumerator OldAttackSequence()
     {
         BoyAttack();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         if (enemyHp > 0)
         {
             EnemyAttack();
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         PlayerAttack();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         attackButton.interactable = true;
         isAttacking = false;
     }

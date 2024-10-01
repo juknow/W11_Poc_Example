@@ -64,6 +64,8 @@ public class BattleController : MonoBehaviour
         boyJob = GameManager.Instance.BoyJob;
 
         UpdateStatus();
+        UpdateButton();
+
 
         turnText.text = "나의 턴";
         logText.text = "나 생각 중..." + "\n";
@@ -108,6 +110,31 @@ public class BattleController : MonoBehaviour
         else if (GameManager.Instance.BoyJob == 2)
         {
             boyState = BoyState.Magician;
+        }
+    }
+
+    public void UpdateButton()
+    {
+        TextMeshProUGUI firstButtonText = firstButton.GetComponentInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI secondButtonText = secondButton.GetComponentInChildren<TextMeshProUGUI>();
+
+        switch (teacherState)
+        {
+            case TeacherState.Fighter:
+                firstButtonText.text = "검 공격";  // 첫 번째 스킬 이름
+                secondButtonText.text = "엄호";   // 두 번째 스킬 이름
+                break;
+
+            case TeacherState.Healer:
+                firstButtonText.text = "힐";
+                secondButtonText.text = "전체 힐";
+                break;
+
+            case TeacherState.Magician:
+                firstButtonText.text = "마력 발사";
+                secondButtonText.text = "전역 마력공격";
+                break;
+
         }
     }
 

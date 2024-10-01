@@ -28,12 +28,12 @@ public class BattleUITextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerHp.text = "My Hp : " + battleController.playerHp;
-        boyHp.text = "boy Hp : " + battleController.boyHp;
-        enemyHp.text = "Enemy Hp : " + battleController.enemyHp;
-        playerAttack.text = "My Attack : " + battleController.playerAttack;
-        boyAttack.text = "boy Attack : " + battleController.boyAttack;
-        enemyAttack.text = "Enemy Attack : " + battleController.enemyAttack;
+        playerHp.text = $"{GameManager.Instance.TeacherName} 체력 : " + battleController.playerHp;
+        boyHp.text = $"{GameManager.Instance.BoyName} 체력 : " + battleController.boyHp;
+        enemyHp.text = "적 체력 : " + battleController.enemyHp;
+        playerAttack.text = "공격력 : " + battleController.playerAttack;
+        boyAttack.text = "공격력 : " + battleController.boyAttack;
+        enemyAttack.text = "공격력 : " + battleController.enemyAttack;
 
     }
 }

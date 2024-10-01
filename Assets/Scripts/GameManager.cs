@@ -8,6 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     // Start is called before the first frame update
 
+    //game start variable
+    private bool gameSet = false;
+    public bool GameSet
+    {
+        get { return gameSet; }
+        set { gameSet = value; }
+    }
 
     //battle variable
     private bool battleFinish = false;

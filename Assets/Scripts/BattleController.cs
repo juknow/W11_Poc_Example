@@ -119,13 +119,13 @@ public class BattleController : MonoBehaviour
         switch (teacherState)
         {
             case TeacherState.Fighter:
-                firstButtonText.text = "검 공격";  // 첫 번째 스킬 이름
-                secondButtonText.text = "엄호";   // 두 번째 스킬 이름
+                firstButtonText.text = "검 공격";
+                secondButtonText.text = "엄호";
                 break;
 
             case TeacherState.Healer:
                 firstButtonText.text = "힐";
-                secondButtonText.text = "전체 힐";
+                secondButtonText.text = "약한 공격";
                 break;
 
             case TeacherState.Magician:
@@ -223,9 +223,8 @@ public class BattleController : MonoBehaviour
     }
     public void HealerSecondAction()
     {
-        boyHp += playerAttack / 2;
-        playerHp += playerAttack / 2;
-        UpdateBattleLog($"나는 전체 힐을 선택했다! : {playerAttack / 2} 회복 !");
+        enemyHp -= playerAttack / 2;
+        UpdateBattleLog($"나는 약한 공격을 선택했다! : {playerAttack / 2} 데미지 !");
 
     }
     public void MagicianFirstAction()
@@ -271,8 +270,8 @@ public class BattleController : MonoBehaviour
                     }
                     else if (target == 1)
                     {
-                        playerHp += boyAttack;
-                        UpdateBattleLog($"제자는 나의 힐을 선택했다! : {boyAttack} 회복 !");
+                        enemyHp -= boyAttack / 2;
+                        UpdateBattleLog($"제자는 약한 공격을 선택했다! : {boyAttack / 2} 데미지 !");
                     }
                 }
                 else if (target2 == 1)
@@ -321,20 +320,20 @@ public class BattleController : MonoBehaviour
 
     private IEnumerator TurnEndSequence()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         turnText.text = "제자 턴";
         UpdateBattleLog($"제자 생각 중... ");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         BoyAttack();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         if (enemyHp > 0)
         {
             turnText.text = "적의 턴";
             UpdateBattleLog($"적 생각 중... ");
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
             EnemyAttack(); // 적이 공격
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         turnText.text = "나의 턴";
         UpdateBattleLog($"나 생각 중... ");
         firstButton.interactable = true;

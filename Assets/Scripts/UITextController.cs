@@ -27,10 +27,26 @@ public class UITextController : MonoBehaviour
     [SerializeField] private TMP_Dropdown firstBoyJobDropDown;
     [SerializeField] private Button firstJobButton;
 
+    [Header("BattleOver필드")]
+    [SerializeField] private Canvas boyJobCanvas;
+    [SerializeField] private TMP_Dropdown boyJobDropDown;
+    [SerializeField] private Button boyJobButton;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        if (GameManager.Instance.GameSet == true)
+        {
+            firstTeacherJobCanvas.gameObject.SetActive(false);
+        }
+        if (GameManager.Instance.BattleFinish == true)
+        {
+            boyJobCanvas.gameObject.SetActive(true);
+        }
+        else if (GameManager.Instance.BattleFinish == false)
+        {
+            boyJobCanvas.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -43,12 +59,16 @@ public class UITextController : MonoBehaviour
         playerJob.text = "스승 직업 : " + GetJobName(GameManager.Instance.TeacherJob);
         boyJob.text = "제자 직업 : " + GetJobName(GameManager.Instance.BoyJob);
         bonusStat.text = "bonus Stats : " + GameManager.Instance.BoyBonusStat;
+
+
+
     }
 
     public void FirstSetJob()
     {
         GameManager.Instance.TeacherJob = firstTeacherJobDropDown.value;
         GameManager.Instance.BoyJob = firstBoyJobDropDown.value;
+        GameManager.Instance.GameSet = true;
         firstTeacherJobCanvas.gameObject.SetActive(false);
     }
 
@@ -66,4 +86,13 @@ public class UITextController : MonoBehaviour
                 return "알 수 없음";
         }
     }
+
+    public void SetJob()
+    {
+        GameManager.Instance.TeacherJob = GameManager.Instance.BoyJob;
+        GameManager.Instance.BoyJob = boyJobDropDown.value;
+        GameManager.Instance.BattleFinish = false;
+        boyJobCanvas.gameObject.SetActive(false);
+    }
+
 }

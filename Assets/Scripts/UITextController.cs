@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UITextController : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class UITextController : MonoBehaviour
 
     [Header("Bonus필드")]
     [SerializeField] private TextMeshProUGUI bonusStat;
+
+    [Header("Job필드")]
+    [SerializeField] private Canvas firstTeacherJobCanvas;
+    [SerializeField] private TMP_Dropdown firstTeacherJobDropDown;
+    [SerializeField] private TMP_Dropdown firstBoyJobDropDown;
+    [SerializeField] private Button firstJobButton;
 
     // Start is called before the first frame update
     void Start()
@@ -30,5 +37,12 @@ public class UITextController : MonoBehaviour
         playerAttack.text = "My Attack : " + GameManager.Instance.PlayerAttack;
         boyAttack.text = "boy Attack : " + GameManager.Instance.BoyAttack;
         bonusStat.text = "bonus Stats : " + GameManager.Instance.BoyBonusStat;
+    }
+
+    public void FirstSetJob()
+    {
+        GameManager.Instance.TeacherJob = firstTeacherJobDropDown.value;
+        GameManager.Instance.BoyJob = firstBoyJobDropDown.value;
+        firstTeacherJobCanvas.gameObject.SetActive(false);
     }
 }

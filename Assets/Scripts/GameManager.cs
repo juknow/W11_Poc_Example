@@ -8,6 +8,21 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     // Start is called before the first frame update
 
+    // job variable
+    private int teacherJob = 0;
+    public int TeacherJob
+    {
+        get { return teacherJob; }
+        set { teacherJob = value; }
+    }
+    private int boyJob = 0;
+    public int BoyJob
+    {
+        get { return boyJob; }
+        set { boyJob = value; }
+    }
+
+
     //hp variable
 
     private int playerHp = 50;

@@ -380,10 +380,12 @@ MonoBehaviour:
   playerAttack: 0
   boyAttack: 0
   enemyAttack: 0
+  teacherJob: 0
+  boyJob: 0
   logText: {fileID: 599915458}
   turnText: {fileID: 1462757402}
-  attackButton: {fileID: 2102844313}
-  healButton: {fileID: 1360701917}
+  firstButton: {fileID: 2102844313}
+  secondButton: {fileID: 1360701917}
 --- !u!4 &252629395
 Transform:
   m_ObjectHideFlags: 0
@@ -1713,7 +1715,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 252629394}
         m_TargetAssemblyTypeName: BattleController, Assembly-CSharp
-        m_MethodName: HealButton
+        m_MethodName: SecondButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2519,7 +2521,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 252629394}
         m_TargetAssemblyTypeName: BattleController, Assembly-CSharp
-        m_MethodName: AttackButton
+        m_MethodName: FirstButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

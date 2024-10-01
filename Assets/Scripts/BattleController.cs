@@ -17,22 +17,316 @@ public class BattleController : MonoBehaviour
     public int boyAttack;
     public int enemyAttack;
 
+    [Header("Job필드")]
+    public int teacherJob;
+    public int boyJob;
+
     [Header("log필드")]
     [SerializeField] private TextMeshProUGUI logText;
     [SerializeField] private TextMeshProUGUI turnText;
 
     [Header("Button필드")]
-    [SerializeField] private Button attackButton;
-    [SerializeField] private Button healButton;
+    [SerializeField] private Button firstButton;
+    [SerializeField] private Button secondButton;
+
 
     // field end
 
-    public enum PlayerState
+    public enum TeacherState
     {
-        Young,
-        Middle,
-        Old
+        Fighter,
+        Healer,
+        Magician
     }
+
+    public enum BoyState
+    {
+        Fighter,
+        Healer,
+        Magician
+    }
+
+    private TeacherState teacherState;
+    private BoyState boyState;
+
+    private int turn = 0;
+    void Start()
+    {
+        playerHp = GameManager.Instance.PlayerHp;
+        boyHp = GameManager.Instance.BoyHp;
+        enemyHp = GameManager.Instance.EnemyHp;
+
+        playerAttack = GameManager.Instance.PlayerAttack;
+        boyAttack = GameManager.Instance.BoyAttack;
+        enemyAttack = GameManager.Instance.EnemyAttack;
+
+        teacherJob = GameManager.Instance.TeacherJob;
+        boyJob = GameManager.Instance.BoyJob;
+
+        UpdateStatus();
+
+        turnText.text = "나의 턴";
+        logText.text = "나 생각 중..." + "\n";
+    }
+
+    void Update()
+    {
+        if (enemyHp <= 0)
+        {
+            GameManager.Instance.BattleFinish = true;
+            SceneManager.LoadScene("Home");
+        }
+    }
+
+    public void UpdateStatus()
+    {
+
+        // state determination
+        if (GameManager.Instance.TeacherJob == 0)
+        {
+            teacherState = TeacherState.Fighter;
+        }
+
+        else if (GameManager.Instance.TeacherJob == 1)
+        {
+            teacherState = TeacherState.Healer;
+        }
+        else if (GameManager.Instance.TeacherJob == 2)
+        {
+            teacherState = TeacherState.Magician;
+        }
+
+        if (GameManager.Instance.BoyJob == 0)
+        {
+            boyState = BoyState.Fighter;
+        }
+
+        else if (GameManager.Instance.BoyJob == 1)
+        {
+            boyState = BoyState.Healer;
+        }
+        else if (GameManager.Instance.BoyJob == 2)
+        {
+            boyState = BoyState.Magician;
+        }
+    }
+
+    public void UpdateBattleLog(string message)
+    {
+        logText.text += message + "\n";
+    }
+
+    //Button Method
+
+    public void FirstButton()
+    {
+
+        firstButton.interactable = false;
+        secondButton.interactable = false;
+
+        switch (teacherState)
+        {
+            case TeacherState.Fighter:
+                FighterFirstAction();
+                break;
+
+            case TeacherState.Healer:
+                HealerFirstAction();
+                break;
+
+            case TeacherState.Magician:
+                MagicianFirstAction();
+                break;
+
+        }
+
+        StartCoroutine(TurnEndSequence());
+    }
+
+    public void SecondButton()
+    {
+        firstButton.interactable = false;
+        secondButton.interactable = false;
+
+        switch (teacherState)
+        {
+            case TeacherState.Fighter:
+                FighterSecondAction();
+                break;
+
+            case TeacherState.Healer:
+                HealerSecondAction();
+                break;
+
+            case TeacherState.Magician:
+                MagicianSecondAction();
+                break;
+
+        }
+        StartCoroutine(TurnEndSequence());
+    }
+
+
+    //Action Method
+
+    public void FighterFirstAction()
+    {
+        enemyHp -= playerAttack;
+        UpdateBattleLog($"나는 검 공격을 선택했다! : {playerAttack} 데미지 !");
+
+    }
+    public void FighterSecondAction()
+    {
+        UpdateBattleLog($"나는 엄호를 선택했다! : 제자의 피해를 대신 받는다!");
+
+    }
+    public void HealerFirstAction()
+    {
+        int target = Random.Range(0, 2);
+
+        if (target == 0)
+        {
+            boyHp += playerAttack;
+            UpdateBattleLog($"나는 제자 힐을 선택했다! : {playerAttack} 회복 !");
+        }
+        else if (target == 1)
+        {
+            playerHp += playerAttack;
+            UpdateBattleLog($"나는 나의 힐을 선택했다! : {playerAttack} 회복 !");
+        }
+
+    }
+    public void HealerSecondAction()
+    {
+        boyHp += playerAttack / 2;
+        playerHp += playerAttack / 2;
+        UpdateBattleLog($"나는 전체 힐을 선택했다! : {playerAttack / 2} 회복 !");
+
+    }
+    public void MagicianFirstAction()
+    {
+        enemyHp -= 2 * playerAttack;
+        UpdateBattleLog($"나는 마력 발사를 선택했다! : {2 * playerAttack} 데미지 !");
+
+    }
+    public void MagicianSecondAction()
+    {
+        enemyHp -= playerAttack;
+        UpdateBattleLog($"나는 전역 마력 공격을 선택했다! : {playerAttack} 데미지 !");
+
+    }
+    public void BoyAttack()
+    {
+        switch (boyState)
+        {
+            case BoyState.Fighter:
+                int target1 = Random.Range(0, 2);
+
+                if (target1 == 0)
+                {
+                    enemyHp -= boyAttack;
+                    UpdateBattleLog($"제자는 검 공격을 선택했다! : {boyAttack} 데미지 !");
+                }
+                else if (target1 == 1)
+                {
+                    UpdateBattleLog($"제자는 엄호를 선택했다! : 나의 피해를 대신 받는다!");
+                }
+                break;
+
+            case BoyState.Healer:
+                int target2 = Random.Range(0, 2);
+
+                if (target2 == 0)
+                {
+                    int target = Random.Range(0, 2);
+                    if (target == 0)
+                    {
+                        boyHp += boyAttack;
+                        UpdateBattleLog($"제자는 제자 힐을 선택했다! : {boyAttack} 회복 !");
+                    }
+                    else if (target == 1)
+                    {
+                        playerHp += boyAttack;
+                        UpdateBattleLog($"제자는 나의 힐을 선택했다! : {boyAttack} 회복 !");
+                    }
+                }
+                else if (target2 == 1)
+                {
+                    boyHp += boyAttack / 2;
+                    playerHp += boyAttack / 2;
+                    UpdateBattleLog($"제자는 전체 힐을 선택했다! : {boyAttack / 2} 회복 !");
+                }
+                break;
+
+            case BoyState.Magician:
+                int target3 = Random.Range(0, 2);
+
+                if (target3 == 0)
+                {
+                    enemyHp -= 2 * boyAttack;
+                    UpdateBattleLog($"제자는 마력 발사를 선택했다! : {2 * boyAttack} 데미지 !");
+                }
+                else if (target3 == 1)
+                {
+                    enemyHp -= boyAttack;
+                    UpdateBattleLog($"제자는 전역 마력 공격을 선택했다! :{boyAttack} 데미지 !");
+                }
+                break;
+
+        }
+    }
+    public void EnemyAttack()
+    {
+        int target = Random.Range(0, 2);
+
+        if (target == 0)
+        {
+            playerHp -= enemyAttack;
+            UpdateBattleLog($"적은 나를 공격했다! : {enemyAttack} 데미지 !");
+        }
+        else if (target == 1)
+        {
+            boyHp -= enemyAttack;
+            UpdateBattleLog($"적은 제자를 공격했다! : {enemyAttack} 데미지 !");
+        }
+
+    }
+
+    //Sequence Method
+
+    private IEnumerator TurnEndSequence()
+    {
+        yield return new WaitForSeconds(1f);
+        turnText.text = "제자 턴";
+        UpdateBattleLog($"제자 생각 중... ");
+        yield return new WaitForSeconds(1f);
+        BoyAttack();
+        yield return new WaitForSeconds(1f);
+        if (enemyHp > 0)
+        {
+            turnText.text = "적의 턴";
+            UpdateBattleLog($"적 생각 중... ");
+            yield return new WaitForSeconds(1f);
+            EnemyAttack(); // 적이 공격
+        }
+        yield return new WaitForSeconds(1f);
+        turnText.text = "나의 턴";
+        UpdateBattleLog($"나 생각 중... ");
+        firstButton.interactable = true;
+        secondButton.interactable = true;
+    }
+
+
+    /*
+        // field end
+
+        public enum PlayerState
+        {
+            Young,
+            Middle,
+            Old
+        }
+
 
     private PlayerState playerState;
 
@@ -411,4 +705,5 @@ public class BattleController : MonoBehaviour
         turnText.text = "제자 턴";
         UpdateBattleLog($"제자 생각 중... ");
     }
+    */
 }

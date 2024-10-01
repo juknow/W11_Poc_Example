@@ -8,6 +8,15 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     // Start is called before the first frame update
 
+
+    //battle variable
+    private bool battleFinish = false;
+    public bool BattleFinish
+    {
+        get { return battleFinish; }
+        set { battleFinish = value; }
+    }
+
     // job variable
     private int teacherJob = 0;
     public int TeacherJob
@@ -32,14 +41,14 @@ public class GameManager : MonoBehaviour
         set { playerHp = value; }
     }
 
-    private int boyHp = 10;
+    private int boyHp = 30;
     public int BoyHp
     {
         get { return boyHp; }
         set { boyHp = value; }
     }
 
-    private int enemyHp = 10;
+    private int enemyHp = 50;
     public int EnemyHp
     {
         get { return enemyHp; }
@@ -55,7 +64,7 @@ public class GameManager : MonoBehaviour
         set { playerAttack = value; }
     }
 
-    private int boyAttack = 1;
+    private int boyAttack = 5;
     public int BoyAttack
     {
         get { return boyAttack; }
